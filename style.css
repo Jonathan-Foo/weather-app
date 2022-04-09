@@ -1,0 +1,24 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+    --main-color: #FFF;
+}
+
+body {
+    box-sizing: border-box;
+    background: url('./img/bg-img.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--main-color);
+}
