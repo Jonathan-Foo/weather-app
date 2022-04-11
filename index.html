@@ -18,15 +18,24 @@
     <div class="info-container">
       <div class="top">
         <div class="search-box">
-          <input type="search" id="searchbar" />
+          <input
+            type="search"
+            class="searchbar"
+            id="searchbar"
+            autocomplete="off"
+          />
           <img src="/img/icons/magnifying-glass-solid.svg" alt="" />
         </div>
-        <input type="checkbox" class="unit-toggle" />
+        <div class="change-unit-toggle">
+          <input type="checkbox" class="unit-toggle enabled" id="unit-check" />
+          <label for="unit-check">unit-check</label>
+        </div>
       </div>
+      <div class="divide-line"></div>
       <div class="middle">
         <div class="left-section">
           <div class="main-icon">
-            <img src="/animated/rainy-1.svg" alt="" />
+            <img src="/animated/cloudy-day-1.svg" alt="" />
             <div class="high-low-temp">
               <p class="temp-high">H: 21 °C</p>
               <p class="temp-low">L: 21 °C</p>
@@ -42,39 +51,46 @@
         <div class="right-section">
           <div class="side-info">
             <img src="/img/icons/feelsLike.svg" aria-hidden="true" />
-            <p class="text-info">Feels like</p>
-            <p class="text-info">22 °C</p>
+            <div class="misc-info">
+              <p class="text-info">Feels like</p>
+              <p class="num-info">22 °C</p>
+            </div>
           </div>
           <div class="side-info">
-            <img src="/img/icons/humidity.svg" aria-hidden="true" />
-            <p class="text-info">Humidity</p>
-            <p class="text-info">56 %</p>
+            <img src="img/icons/humidity.svg" aria-hidden="true" />
+            <div class="misc-info">
+              <p class="text-info">Humidity</p>
+              <p class="num-info">56 %</p>
+            </div>
           </div>
 
           <div class="side-info">
             <img src="img/icons/chanceOfRain.svg" aria-hidden="true" />
-            <p class="text-info">Rain</p>
-            <p class="text-info"></p>
+            <div class="misc-info">
+              <p class="text-info">Rain</p>
+              <p class="num-info">0 %</p>
+            </div>
           </div>
 
           <div class="side-info">
             <img src="img/icons/windSpeed.svg" aria-hidden="true" />
-            <p class="text-info">Wind speed</p>
-            <p class="text-info">37 km/h</p>
+            <div class="misc-info">
+              <p class="text-info">Wind speed</p>
+              <p class="num-info">37 km/h</p>
+            </div>
           </div>
         </div>
       </div>
+      <div class="divide-line"></div>
       <div class="bottom">
         <div class="options">
-          <div>Next</div>
-          <div class="hourly">24 Hour</div>
-          <div class="daily">7 Days</div>
+          <div class="daily">7-Day Forecast</div>
         </div>
         <div class="forecast">
-          <div class="nav-arrows">
+          <!-- <div class="nav-arrows">
             <img src="img/icons/previous.svg" class="previous" />
             <img src="img/icons/next.svg" class="next" />
-          </div>
+          </div> -->
           <div class="card">
             <p class="time">Sunday</p>
             <p class="max-temp">24 °C</p>
