@@ -25,6 +25,8 @@ async function fetchWeatherData(city, tempUnit) {
 }
 
 async function fetchOneCallData(weatherData, tempUnit) {
+    if (weatherData === undefined) return; 
+
     const lon = weatherData.coord.lon
     const lat = weatherData.coord.lat 
     const oneCallFetch = await fetch(
@@ -32,27 +34,35 @@ async function fetchOneCallData(weatherData, tempUnit) {
         { mode: 'cors' }
     );
     const oneCallData = await oneCallFetch.json()
-    console.log(oneCallData);
+    return oneCallData;
 } 
 
 // Validate Search Input
+function search() {
+    const searchBar = document.getElementById('searchbar');
+        if (searchBar.validity.valid) {
+            setCurrentLocation(searchBar.value);
+            locationSearch();  
+        } else {
+            searchBar.reportValidity(); 
+        } 
+}
 
-(function validateSearch() {
+function validateSearch() {
     const searchBar = document.getElementById('searchbar');
     const searchIcon = document.getElementById('searchIcon');
-    searchIcon.addEventListener('click', () => {
-        return searchBar.validity.valid ? locationSearch(searchBar.value) : searchBar.reportValiidity(); 
-    } )
-})();
+    searchIcon.addEventListener('click', () => search() )
+}
 
 // Change temp unit
 
-(function switchTemp() {
+function switchTemp() {
     const unitToggle = document.getElementById('unit-check');
     unitToggle.addEventListener('click', () => {
-        changeUnits();    
+        changeUnits()
+        locationSearch();    
     });
-})();
+}
 
 
 function changeUnits() {
@@ -63,6 +73,14 @@ function changeUnits() {
         currentTempUnit = 'metric';
         return currentUnit = '°C'
         
+    }
+}
+
+function changeWindSpeedUnit(value) {
+    if (currentTempUnit === 'metric') {
+        return `${(value * 3.6).toFixed(1)} km/h`;
+    } else {
+        return `${(value).toFixed(1)} mph`;
     }
 }
 
@@ -103,22 +121,28 @@ function epochToDate(epoch, offset) {
 let extWeatherData = []
 
 function extractWeatherData(obj) {
-    extWeatherData.push(`${Math.round(weatherData.main.temp_max)} ${currentUnit}`);
-    extWeatherData.push(`${Math.round(weatherData.main.temp_min)} ${currentUnit}`);
+    if (obj === undefined) return;
+
+    extWeatherData = []
+    extWeatherData.push(`H: ${Math.round(obj.main.temp_max)} ${currentUnit}`);
+    extWeatherData.push(`L: ${Math.round(obj.main.temp_min)} ${currentUnit}`);
     extWeatherData.push(`${obj.name }, ${obj.sys.country}`);
     extWeatherData.push( getLocalTime(obj.timezone) );
     extWeatherData.push( `${Math.round(obj.main.temp)} ${currentUnit}` );
-    extWeatherData.push( weatherData.weather[0].description );
-    extWeatherData.push( `${Math.round(weatherData.main.feels_like)} ${currentUnit}`);
-    extWeatherData.push( `${weatherData.main.humidity} %`);
-    extWeatherData.push( `${(weatherData.wind.speed * 3.6).toFixed(1)} km/h`);
-    extWeatherData.push( `${weatherData.weather[0].icon}`);
+    extWeatherData.push( obj.weather[0].description );
+    extWeatherData.push( `${Math.round(obj.main.feels_like)} ${currentUnit}`);
+    extWeatherData.push( `${obj.main.humidity} %`);
+    extWeatherData.push( changeWindSpeedUnit(obj.wind.speed));
+    extWeatherData.push( `${obj.weather[0].icon}`);
+    
     return extWeatherData
 }
 
 let extOneCallData = {}
 
 function extractOneCallData(obj) {
+    if (obj === undefined) return;
+
     if (obj.daily[0].pop > 0 ) { 
         extOneCallData.rain = Math.round(obj.daily[0].pop); 
     } else { 
@@ -130,7 +154,7 @@ function extractOneCallData(obj) {
     const dayInfoArr = [];
     
     next7Day.forEach(
-        day => dayInfoArr.push(dayInfoObjFactory(epochToDate(day.dt, timeOffset), day.temp.max, day.temp.min, day.weather[0].icon))
+        day => dayInfoArr.push(dayInfoObjFactory(epochToDate(day.dt, timeOffset), Math.round(day.temp.max), Math.round(day.temp.min), day.weather[0].icon))
     );
 
     extOneCallData.days = dayInfoArr;
@@ -145,7 +169,6 @@ function dayInfoObjFactory(day, maxTemp, minTemp, icon) {
 
 
 // DOM Manipulation 
-
 
 function fillMidSectionContent() {
     const midContent = [...document.querySelectorAll('.mid-content')];
@@ -167,20 +190,41 @@ function fillForecastContent() {
         group[0].textContent = extOneCallData.days[index].day;
         group[1].textContent = `${extOneCallData.days[index].maxTemp} ${currentUnit}`;
         group[2].textContent = `${extOneCallData.days[index].minTemp} ${currentUnit}`;
-        group[3].src = `animated/${extOneCallData.days[index].minTemp}.svg`;
+        group[3].src = `animated/${extOneCallData.days[index].icon}.svg`;
     })    
 }
 
-
-
 // COMPLETE FUNCTION
-
-
-async function locationSearch(input) {
-    setCurrentLocation(input);
-    const weatherData = await fetchWeatherData(currentLocation, currentTempUnit);
-    const oneCallData = await fetchOneCallData(weatherData, currentTempUnit);
-    
-    // fillForecaseContent();
-    // fillLeftSectionContent();
+async function locationSearch() {
+    const weatherDataRes = await fetchWeatherData(currentLocation, currentTempUnit);
+    const oneCallData = await fetchOneCallData(weatherDataRes, currentTempUnit);
+    extractWeatherData(weatherDataRes)
+    extractOneCallData(oneCallData)
+    setTimeout(fillMidSectionContent(), 2000);
+    fillForecastContent();
 }
+
+// Keyboard Function
+function clearSearchBar() {
+    const searchBar = document.getElementById('searchbar');
+
+    searchBar.value = '';
+}
+
+
+function keyPress(e) {
+    switch(e.keyCode) {
+        case 13:
+        search();
+    break;
+    case 27:
+        clearSearchBar();
+    break; 
+}
+}
+
+validateSearch()
+locationSearch(currentLocation)
+switchTemp()
+
+window.addEventListener('keydown', (e) => keyPress(e))
