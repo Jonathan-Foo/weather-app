@@ -34,6 +34,29 @@ img {
     
 }
 
+.daily,
+.side-info,
+.main-info > *,
+.main-info,
+.main-icon,
+.card {
+    transition: 200ms ease-in-out;
+}
+
+.daily:hover,
+.side-info:hover,
+.main-icon:hover,
+.card:hover {
+    text-shadow: 0 0 2px #FFF;
+    transform: scale(1.05);
+}
+
+.main-info > *:hover {
+    text-shadow: 0 0 1px #FFF;
+    transform: scale(1.03);
+}
+
+
 
 /* INFO CONTAINER STYLE */
 .info-container {
@@ -64,6 +87,7 @@ img {
 
 .search-box > img {
     cursor: pointer;
+    transition: 200ms ease-in-out;
 }
 
 .searchbar {
@@ -73,12 +97,24 @@ img {
     padding: .5em;
     width: 100%;
     font-family: inherit;
+    transition: 200ms ease-in-out;
 }
 
 .searchbar:focus {
     outline: none;
 }
 
+.searchbar:hover{
+    box-shadow: 0 0 5px #fff;
+    transform: scale(1.02);
+}
+
+.search-box > img:hover {
+    filter: drop-shadow( 0px 0px 10px rgba(255, 255, 255, .4));
+    transform: scale(1.1);
+}
+
+/* TEMP UNIT TOGGLE BUTTON  */
 .unit-toggle.enabled {
     opacity: 0;
     position: absolute;
@@ -95,15 +131,39 @@ img {
 
 .unit-toggle.enabled + label::before {
     content: '';
-    width: 2em;
-    height: 1em;
+    width: 4em;
+    height: 1.5em;
     background: white;
     border-radius: 5px;
 }
 
+.unit-toggle.enabled + label::after {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    content: '°C';
+    font-size: 1em;
+    width: 2em;
+    height: 1.4em;
+    background: rgba(60, 216, 255, 0.7);
+    border: 1px solid white;
+    border-radius: 5px;
+    transition: 200ms ease-in-out;
+    text-shadow: none;
+    font-weight: bold;
+}
 
-.unit-toggle.enabled:checked + label {
-    color: red;
+.unit-toggle.enabled:checked + label::after {
+    transform: translateX(90%);
+}
+
+.unit-toggle.enabled:hover + label::before{
+    box-shadow: 0 0 2px 0 #FFF;
+}
+
+.unit-toggle.enabled:checked + label::after {
+    content: '°F';
 }
 
 
@@ -209,7 +269,7 @@ img {
 .options {
     display: flex;
     gap: .5em;
-    margin: 0 0 .1em .5em;
+    margin: 0 0 .1em 1em;
     font-weight: bold;
     font-size: 1em;
 }
@@ -228,7 +288,7 @@ img {
 .forecast {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 1em;
 }
 
@@ -255,5 +315,5 @@ img {
 
 .max-temp,
 .min-temp {
-    text-shadow: 1px 2px 5px #111;
+    text-shadow: 1px 2px 3px #111;
 }

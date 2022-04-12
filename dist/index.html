@@ -12,7 +12,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
+    <script src="main.js" type="module" defer></script>
   </head>
   <body>
     <div class="info-container">
@@ -23,44 +23,49 @@
             class="searchbar"
             id="searchbar"
             autocomplete="off"
+            required
           />
-          <img src="/img/icons/magnifying-glass-solid.svg" alt="" />
+          <img
+            src="img/icons/magnifying-glass-solid.svg"
+            aria-hidden="true"
+            id="searchIcon"
+          />
         </div>
         <div class="change-unit-toggle">
           <input type="checkbox" class="unit-toggle enabled" id="unit-check" />
-          <label for="unit-check">unit-check</label>
+          <label for="unit-check"></label>
         </div>
       </div>
       <div class="divide-line"></div>
       <div class="middle">
         <div class="left-section">
           <div class="main-icon">
-            <img src="/animated/cloudy-day-1.svg" alt="" />
+            <img src="animated/01d.svg" />
             <div class="high-low-temp">
-              <p class="temp-high">H: 21 °C</p>
-              <p class="temp-low">L: 21 °C</p>
+              <p class="temp-high mid-content">H: 21 °C</p>
+              <p class="temp-low mid-content">L: 21 °C</p>
             </div>
           </div>
           <div class="main-info">
-            <p class="location">Tokyo</p>
-            <p class="date-time">Saturday, 9th Apr 2022 3:54 pm</p>
-            <p class="main-temp">22 °C</p>
-            <p class="weather-description">few clouds</p>
+            <p class="location mid-content">Tokyo</p>
+            <p class="date-time mid-content">Saturday, 9th Apr 2022 3:54 pm</p>
+            <p class="main-temp mid-content">22 °C</p>
+            <p class="weather-description mid-content">few clouds</p>
           </div>
         </div>
         <div class="right-section">
           <div class="side-info">
-            <img src="/img/icons/feelsLike.svg" aria-hidden="true" />
+            <img src="img/icons/feelsLike.svg" aria-hidden="true" />
             <div class="misc-info">
               <p class="text-info">Feels like</p>
-              <p class="num-info">22 °C</p>
+              <p class="num-info mid-content">22 °C</p>
             </div>
           </div>
           <div class="side-info">
             <img src="img/icons/humidity.svg" aria-hidden="true" />
             <div class="misc-info">
               <p class="text-info">Humidity</p>
-              <p class="num-info">56 %</p>
+              <p class="num-info mid-content">56 %</p>
             </div>
           </div>
 
@@ -68,7 +73,7 @@
             <img src="img/icons/chanceOfRain.svg" aria-hidden="true" />
             <div class="misc-info">
               <p class="text-info">Rain</p>
-              <p class="num-info">0 %</p>
+              <p class="num-info rain-info">0 %</p>
             </div>
           </div>
 
@@ -76,7 +81,7 @@
             <img src="img/icons/windSpeed.svg" aria-hidden="true" />
             <div class="misc-info">
               <p class="text-info">Wind speed</p>
-              <p class="num-info">37 km/h</p>
+              <p class="num-info mid-content">37 km/h</p>
             </div>
           </div>
         </div>
@@ -95,49 +100,43 @@
             <p class="time">Sunday</p>
             <p class="max-temp">24 °C</p>
             <p class="min-temp">16 °C</p>
-            <img src="/animated/cloudy.svg" alt="" />
+            <img src="animated/10n.svg" />
           </div>
           <div class="card">
             <p class="time">Sunday</p>
             <p class="max-temp">24 °C</p>
             <p class="min-temp">16 °C</p>
-            <img src="/animated/cloudy.svg" alt="" />
+            <img src="animated/01d.svg" />
           </div>
           <div class="card">
             <p class="time">Sunday</p>
             <p class="max-temp">24 °C</p>
             <p class="min-temp">16 °C</p>
-            <img src="/animated/cloudy.svg" alt="" />
+            <img src="animated/01n.svg" />
           </div>
           <div class="card">
             <p class="time">Sunday</p>
             <p class="max-temp">24 °C</p>
             <p class="min-temp">16 °C</p>
-            <img src="/animated/cloudy.svg" alt="" />
+            <img src="animated/02n.svg" />
           </div>
           <div class="card">
             <p class="time">Sunday</p>
             <p class="max-temp">24 °C</p>
             <p class="min-temp">16 °C</p>
-            <img src="/animated/cloudy.svg" alt="" />
+            <img src="animated/02d.svg" />
           </div>
           <div class="card">
             <p class="time">Sunday</p>
             <p class="max-temp">24 °C</p>
             <p class="min-temp">16 °C</p>
-            <img src="/animated/cloudy.svg" alt="" />
+            <img src="animated/03d.svg" />
           </div>
           <div class="card">
             <p class="time">Sunday</p>
             <p class="max-temp">24 °C</p>
             <p class="min-temp">16 °C</p>
-            <img src="/animated/cloudy.svg" alt="" />
-          </div>
-          <div class="card">
-            <p class="time">Sunday</p>
-            <p class="max-temp">24 °C</p>
-            <p class="min-temp">16 °C</p>
-            <img src="/animated/cloudy.svg" alt="" />
+            <img src="animated/03d.svg" />
           </div>
         </div>
       </div>
