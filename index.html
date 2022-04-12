@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Weather App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js" type="module" defer></script>
+  </head>
+  <body>
+    <div class="info-container">
+      <div class="top">
+        <div class="search-box">
+          <input
+            type="search"
+            class="searchbar"
+            id="searchbar"
+            autocomplete="off"
+            required
+          />
+          <img
+            src="img/icons/magnifying-glass-solid.svg"
+            aria-hidden="true"
+            id="searchIcon"
+          />
+        </div>
+        <div class="change-unit-toggle">
+          <input type="checkbox" class="unit-toggle enabled" id="unit-check" />
+          <label for="unit-check"></label>
+        </div>
+      </div>
+      <div class="divide-line"></div>
+      <div class="middle">
+        <div class="left-section">
+          <div class="main-icon">
+            <img src="" />
+            <div class="high-low-temp">
+              <p class="temp-high mid-content"></p>
+              <p class="temp-low mid-content"></p>
+            </div>
+          </div>
+          <div class="main-info">
+            <p class="location mid-content"></p>
+            <p class="date-time mid-content"></p>
+            <p class="main-temp mid-content"></p>
+            <p class="weather-description mid-content"></p>
+          </div>
+        </div>
+        <div class="right-section">
+          <div class="side-info">
+            <img src="img/icons/feelsLike.svg" aria-hidden="true" />
+            <div class="misc-info">
+              <p class="text-info">Feels like</p>
+              <p class="num-info mid-content"></p>
+            </div>
+          </div>
+          <div class="side-info">
+            <img src="img/icons/humidity.svg" aria-hidden="true" />
+            <div class="misc-info">
+              <p class="text-info">Humidity</p>
+              <p class="num-info mid-content"></p>
+            </div>
+          </div>
+
+          <div class="side-info">
+            <img src="img/icons/chanceOfRain.svg" aria-hidden="true" />
+            <div class="misc-info">
+              <p class="text-info">Rain</p>
+              <p class="num-info rain-info"></p>
+            </div>
+          </div>
+
+          <div class="side-info">
+            <img src="img/icons/windSpeed.svg" aria-hidden="true" />
+            <div class="misc-info">
+              <p class="text-info">Wind speed</p>
+              <p class="num-info mid-content"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="divide-line"></div>
+      <div class="bottom">
+        <div class="options">
+          <div class="daily">7-Day Forecast</div>
+        </div>
+        <div class="forecast">
+          <!-- <div class="nav-arrows">
+            <img src="img/icons/previous.svg" class="previous" />
+            <img src="img/icons/next.svg" class="next" />
+          </div> -->
+          <div class="card">
+            <p class="time"></p>
+            <p class="max-temp"></p>
+            <p class="min-temp"></p>
+            <img src="" />
+          </div>
+          <div class="card">
+            <p class="time"></p>
+            <p class="max-temp"></p>
+            <p class="min-temp"></p>
+            <img src="" />
+          </div>
+          <div class="card">
+            <p class="time"></p>
+            <p class="max-temp"></p>
+            <p class="min-temp"></p>
+            <img src="" />
+          </div>
+          <div class="card">
+            <p class="time"></p>
+            <p class="max-temp"></p>
+            <p class="min-temp"></p>
+            <img src="" />
+          </div>
+          <div class="card">
+            <p class="time"></p>
+            <p class="max-temp"></p>
+            <p class="min-temp"></p>
+            <img src="" />
+          </div>
+          <div class="card">
+            <p class="time"></p>
+            <p class="max-temp"></p>
+            <p class="min-temp"></p>
+            <img src="" />
+          </div>
+          <div class="card">
+            <p class="time"></p>
+            <p class="max-temp"></p>
+            <p class="min-temp"></p>
+            <img src="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
