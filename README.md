@@ -6,6 +6,9 @@ A weather app created to explore and learn asynchronous functions, promises, and
 Live Preview :globe_with_meridians:: https://jonathan-foo.github.io/weather-app/
 
 # Features :sparkles:
+- Search option for any internatoinal city 
+- Accurate weather date from OpenWeather API
+- Animated Icons
 
 # Technologies :hammer_and_wrench:
 ### Frontend
